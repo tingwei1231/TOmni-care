@@ -1,0 +1,30 @@
+# ===== TOmni-Care Agent — 第一階段依賴 =====
+# 安裝方式：pip install -r requirements.txt
+# Colab 補充：!pip install -r requirements.txt
+
+# --- ASR ---
+faster-whisper>=1.0.3          # Whisper CTranslate2 加速推論
+silero-vad>=5.1.2              # 輕量 VAD（語音端點偵測）
+soundfile>=0.12.1              # 音訊讀寫
+numpy>=1.24.0
+
+# --- TTS (Bert-VITS2 依賴) ---
+torch>=2.1.0                   # PyTorch（GPU/CPU 皆可）
+torchaudio>=2.1.0
+transformers>=4.40.0           # HuggingFace Transformers（Bert 模型）
+phonemizer>=3.2.1              # 音素轉換工具
+jieba>=0.42.1                  # 中文分詞（漢字前處理）
+pypinyin>=0.51.0               # 拼音輔助（用作台語音標對照）
+
+# --- Gradio Demo ---
+gradio>=4.31.0
+
+# --- 工具 ---
+librosa>=0.10.0                # 音訊特徵提取（第三階段情緒分析預備）
+scipy>=1.11.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# --- 測試 ---
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
