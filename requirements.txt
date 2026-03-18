@@ -28,3 +28,15 @@ python-dotenv>=1.0.0
 # --- 測試 ---
 pytest>=8.0.0
 pytest-asyncio>=0.23.0
+
+# ── 第二階段：LLM & RAG ─────────────────────────────────────
+# LLM 後端（擇一或全裝）
+groq>=0.11.0                   # Groq API（優先後端，速度最快）
+openai>=1.50.0                 # OpenRouter 相容 OpenAI 格式
+ollama>=0.3.0                  # Ollama 本地推論客戶端
+
+# RAG 知識庫
+chromadb>=0.5.0                # 向量資料庫（含持久化儲存）
+sentence-transformers>=3.0.0   # Embedding + Cross-Encoder Reranking
+pdfminer.six>=20221105         # PDF 文件解析
+pypdf>=4.0.0                   # PDF 備用解析器
