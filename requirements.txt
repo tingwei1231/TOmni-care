@@ -40,3 +40,9 @@ chromadb>=0.5.0                # 向量資料庫（含持久化儲存）
 sentence-transformers>=3.0.0   # Embedding + Cross-Encoder Reranking
 pdfminer.six>=20221105         # PDF 文件解析
 pypdf>=4.0.0                   # PDF 備用解析器
+
+# ── 第三階段：情緒感知 & LangGraph Agent ─────────────────────
+scikit-learn>=1.4.0            # SVM 情緒分類器
+langgraph>=0.2.0               # LangGraph 狀態機框架
+langchain-core>=0.3.0          # Tool Calling 基礎
+langchain-groq>=0.2.0          # Groq LangChain 整合（Tool Calling 用）
