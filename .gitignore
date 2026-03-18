@@ -1,20 +1,44 @@
-# Models
-models/
-*.bin
-*.pth
-*.gguf
-*.safetensors
-
 # Python
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# 環境變數（絕對不能上傳）
 .env
-.venv
-env/
-venv/
-ENV/
+*.env.local
+
+# 模型（體積太大，用 HF Hub 管理）
+models/
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+
+# 向量資料庫（本地生成，不上傳）
+data/chroma_db/
+
+# 音訊資料（不上傳原始錄音，保護隱私）
+data/audio/
+
+# 測試快取
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Colab 暫存
+*.ipynb_checkpoints/

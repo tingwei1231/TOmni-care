@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+data/chroma_db/
+data/audio/
+models/
+*.pt
+*.bin
+*.safetensors
+.env
+.DS_Store
+Thumbs.db

@@ -1,0 +1,54 @@
+services:
+  # ── FastAPI 後端 ─────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: tomni-care-api
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - LLM_BACKEND=${LLM_BACKEND:-groq}
+      - DEVICE=${DEVICE:-cpu}
+      - ASR_MODEL_SIZE=${ASR_MODEL_SIZE:-small}
+    volumes:
+      # 持久化 ChromaDB 向量資料庫與模型
+      - chroma_data:/app/data/chroma_db
+      - model_data:/app/models
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # ── Gradio Demo UI ───────────────────────────────────────────
+  gradio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: tomni-care-gradio
+    ports:
+      - "7860:7860"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - LLM_BACKEND=${LLM_BACKEND:-groq}
+      - DEVICE=${DEVICE:-cpu}
+      - API_BASE_URL=http://api:8000
+    volumes:
+      - chroma_data:/app/data/chroma_db
+      - model_data:/app/models
+    command: ["python", "src/demo/gradio_app.py"]
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  chroma_data:
+  model_data:
